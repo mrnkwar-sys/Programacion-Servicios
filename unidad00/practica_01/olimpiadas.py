@@ -110,8 +110,23 @@ entre cada pareja de atletas consecutivos en esa ordenación y devuelve la mayor
 diferencias. Debes utilizar zip para emparejar elementos consecutivos.
 '''
 def metodozip(registros):
+    #Se declara una lista vacia
     lis = []
+
+    #Sorted toma la lista registros y crea una nueva con los elementos ordenados de menor a mayor
+    #key=lambda t:t.edad le dice al programa que no lo ordene de cualquier manera, sino que tome como referencia el atributo .edad de cada atleta (t)
     registros = sorted(registros, key=lambda t:t.edad)
+
+    '''
+    registros_ordenados[1:] crea una copia de la lista pero empezando por el segundo elemento
+    El metodo zip() junta el primer elemento de una lista con el primero del segundo, por lo que aqui estamos
+    juntando al atleta1 con el atleta2, al atleta2 con el atleta3...
+
+    for a,b asigna a la variable 'a' a la pareja mas joven y a la variable 'b' a la siguiente mas mayor
+    '''
     for a,b in zip(registros, registros[1:]):
+        # Obtiene la diferencia de edad entre los atletas y la anade a la lista
         lis.append(b.edad - a.edad)
+
+        #El metodo max() revisa todas las diferencias de edad de la lista y se queda con el valor mas alto
     return max(lis)
