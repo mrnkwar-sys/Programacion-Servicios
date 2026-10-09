@@ -47,7 +47,7 @@ partido debe aparecer en el resultado.
 
 def desviaciones_media(partidos: list, n: int):
     # 1. Calcular la media extrayendo la duración de cada partido
-    media = sum(p.duracion for p.duracion in partidos) / len(partidos)
+    media = sum(partidos.duracion for partidos.duracion in partidos) / len(partidos)
         
     # 2. Obtener la desviación de cada partido
     desviaciones = map(lambda p: p.duracion - media, partidos)
