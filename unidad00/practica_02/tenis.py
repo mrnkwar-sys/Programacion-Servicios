@@ -50,12 +50,15 @@ def desviaciones_media(partidos: list, n: int):
     media = sum(partidos.duracion for partidos.duracion in partidos) / len(partidos)
         
     # 2. Obtener la desviación de cada partido
+    # El metodo map aplica una operacion sobre todos los elementos de una lista
+    # En la primera parte del metodo se define la operacion y, en la segunda, sobre que conjunto de elementos se realizara dicha operacion
     desviaciones = map(lambda p: p.duracion - media, partidos)
         
     # 3. Emparejar con zip() cada desviación con su partido original
     parejas = zip(desviaciones, partidos)
         
     # 4. Filtrar solo las parejas cuya desviación sea >= n
+    # filter() devuelve un iterador que debe convertirse a lista, tupla o set para poder ver los resultados
     resultado = filter(lambda par: par[0] >= n, parejas)
         
     # Devolverlo en forma de lista
