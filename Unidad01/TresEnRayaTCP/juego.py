@@ -2,6 +2,11 @@ TAMANO = 3
 COLUMNAS = "ABC"
 
 def crear_tablero():
+    """_summary_
+
+    Returns:
+        _type_: _description_
+    """
     tablero = []
     #Filas
     for i in range(TAMANO):
@@ -56,3 +61,57 @@ def jugada_valida(tablero, coordenada):
         #Si el hueco está vacío, devuelve True
         if tablero[fila][columna] == " ":
             return True
+        else:
+            return False
+
+def colocar_ficha(tablero, coordenada, ficha):
+    indices = coordenada_a_indice(coordenada)
+    
+    if indices == None:
+        return False
+    else:
+        fila = indices[0]
+        columna = indices[1]
+        
+        #Modifica el hueco en el tablero para poner el valor de la ficha
+        if tablero[fila][columna] == " ":
+            tablero[fila][columna] = ficha
+            return True
+        else:
+            return False
+
+def comprobar_ganador(tablero, ficha):
+    partidaGanada = False
+    
+    #Comprueba si se ha hecho 3 en raya horizontalmente
+    for fila in range(TAMANO):
+        if tablero[fila][0] == tablero[fila][1] == tablero[fila][2] == ficha:
+            partidaGanada = True
+    
+    #Comprueba si se ha hecho 3 en raya verticalmente
+    for col in range(TAMANO):
+        if tablero[0][col] == tablero[1][col] == tablero[2][col] == ficha:
+            partidaGanada = True
+    
+    #Comprueba si se ha hecho 3 en raya diagonalmente (de izquierda-derecha)
+    if tablero[0][0] == tablero[1][1] == tablero[2][2] == ficha:
+        partidaGanada = True
+        
+    #Comprueba si se ha hecho 3 en raya diagonalmente (de derecha-izquierda)
+    if tablero[0][2] == tablero[1][1] == tablero[2][0] == ficha:
+        partidaGanada = True
+    
+    return partidaGanada
+
+def tablero_lleno(tablero):
+    lleno = True
+    
+    for fila in tablero:
+        for espacio in fila:
+            if espacio == " ":
+                lleno = False
+    
+    return lleno
+
+def enviar_mensaje(conexion, mensaje):
+    
