@@ -114,4 +114,31 @@ def tablero_lleno(tablero):
     return lleno
 
 def enviar_mensaje(conexion, mensaje):
+    #Envia un mensaje terminado en salto de linea
+    datos = (mensaje + "\n").encode("utf-8")
+    conexion.sendall(datos)
+
+def recibir_mensaje(conexion):
+    #Lista mutable de bytes vacía donde se acumularan las letras segun vayan llegando
+    datos = bytearray()
+    terminado = False
+
+    while not terminado:
+        #Espera a recibir 1 byte del socket
+        fragmento = conexion.recv(1)
+
+        #Si recv devuelve una cadena vacía
+        if not fragmento:
+            raise ConnectionError("El otro jugador se ha desconectado")
+        if fragmento == b"\n":
+            terminado = True
+        else:
+            datos.extend(fragmento)
+            if len(datos) > 64:
+                raise ValueError("Mensaje demasiado largo")
+
+    return datos.decode("utf-8")
+
+def jugar(conexion, empieza):
+
     
