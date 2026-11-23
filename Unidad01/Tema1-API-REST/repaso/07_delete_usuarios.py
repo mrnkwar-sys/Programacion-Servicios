@@ -143,7 +143,7 @@ def alter_user_slightly(id: int, data: UserCreate):
 # Elimina un usuario existente mediante su ID.
 @app.delete("/users/{id}")
 def delete_user(id: int):
-    for position, user in users_list:
+    for position, user in enumerate(users_list):
         if user.id == id:
             #.pop() permite eliminar un par clave-valor de un diccionario al pasarle la clave
             users_list.pop(position)
