@@ -178,7 +178,7 @@ def jugar(conexion, empieza):
         if mi_turno:
             print("\n--- TU TURNO ---")
             mostrar_tablero(tablero)
-            print(f"Escribe {mi_ficha} en una coordenada válida")
+            print(f"Tu ficha es {mi_ficha}")
             
             #Pide una jugada al cliente/servidor
             coordenada = pedir_jugada(tablero)
