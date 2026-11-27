@@ -1,0 +1,9 @@
+Why would a football league need communication between applications?
+In order to know te details of the players of an specific team.
+
+Which application is the client and which is the server?
+There is no client or server.
+
+What is the difference between PUT and PATCH?
+Put makes the user change the all the object's information. On the other hand,
+patch allows the user to only change the data that they want to modify.
